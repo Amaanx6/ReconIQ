@@ -4,13 +4,12 @@ AS (username:chararray, timestamp:chararray, ip:chararray, status:chararray);
 
 failed logins = FILTER logins BY status
 
-= GROUP failed_logins BY username;
+grp = GROUP failed_logins BY username;
 
 ==
 
 group AS username, COUNT(failed_logins) AS attempts;
 
-grp
 
 failed_count = FOREACH grp GENERATE
 
