@@ -1,0 +1,17 @@
+logins = LOAD '/user/cloudera/login_data.txt' USING PigStorage(',')
+
+AS (username:chararray, timestamp:chararray, ip:chararray, status:chararray);
+
+failed logins = FILTER logins BY status
+
+= GROUP failed_logins BY username;
+
+==
+
+group AS username, COUNT(failed_logins) AS attempts;
+
+grp
+
+failed_count = FOREACH grp GENERATE
+
+suspicious = FILTER failed_count BY attempts > 3; DUMP suspicious;
