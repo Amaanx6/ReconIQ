@@ -4,7 +4,7 @@ import './globals.css'
 import { QueryProvider } from '@/components/query-provider'
 
 export const metadata: Metadata = {
-  title: 'Arbiter — Reconciliation that knows when not to guess',
+  title: 'ReconIQ — Reconciliation that knows when not to guess',
   description: 'Evidence-backed reconciliation for the transactions that do not reconcile themselves.',
   generator: 'v0.app',
 }

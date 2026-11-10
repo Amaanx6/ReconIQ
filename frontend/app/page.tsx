@@ -321,7 +321,7 @@ function Hero() {
         </h1>
 
         <p>
-          Arbiter combines deterministic matching with adversarial reasoning,
+          ReconIQ combines deterministic matching with adversarial reasoning,
           so your finance team gets fewer false positives—and evidence for
           every decision.
         </p>
@@ -546,7 +546,7 @@ function Metrics() {
         </h2>
 
         <p>
-          Arbiter makes uncertainty visible. The goal is not to eliminate
+          ReconiQ makes uncertainty visible. The goal is not to eliminate
           exceptions—it is to make every outcome defensible.
         </p>
       </motion.div>
@@ -679,7 +679,7 @@ function Footer() {
       </div>
 
       <span className="footer-meta">
-        © 2026 Arbiter / built for honest books
+        © 2026 ReconIQ / built for honest books
       </span>
     </footer>
   )
