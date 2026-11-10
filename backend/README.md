@@ -28,6 +28,16 @@ FastAPI backend for the AI Finance Controller hackathon project.
 
 The API will be available at `http://localhost:8000`
 
+## Ollama provider
+
+For local development with Ollama, set `PROVIDER=local` and use
+`LOCAL_API_BASE=http://localhost:11434/v1`. In a Vercel deployment,
+`localhost` refers to the backend function's own runtime, not a developer
+machine. To use Ollama there, configure `PROVIDER=local` and set
+`LOCAL_API_BASE` in the backend service's Vercel environment to a
+network-reachable hosted Ollama endpoint. Do not commit the hosted endpoint or
+any credentials.
+
 ## Production run storage
 
 Uploaded runs are isolated by `run_id`. Source files are stored under

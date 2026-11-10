@@ -1,12 +1,13 @@
 import { NextRequest } from 'next/server'
 import { cached, cachePolicy, redis } from '@/lib/redis'
 
-const backend = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
 type ProxyResult = { body: string; status: number; contentType: string; setCookie?: string }
 
 async function fetchUpstream(request: NextRequest, routePath: string): Promise<ProxyResult> {
+  const backend = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
   const upstreamPath = routePath === 'health' || routePath === 'openapi.json' ? routePath : `api/${routePath}`
-  const target = `${backend}/${upstreamPath}${request.nextUrl.search}`
+  const target = new URL(upstreamPath, `${backend.replace(/\/+$/, '')}/`)
+  target.search = request.nextUrl.search
   const headers = new Headers()
   for (const name of ['content-type', 'accept', 'idempotency-key', 'cookie']) {
     const value = request.headers.get(name)
@@ -20,7 +21,7 @@ async function fetchUpstream(request: NextRequest, routePath: string): Promise<P
     return { body: await response.text(), status: response.status, contentType: response.headers.get('content-type') || 'application/json', setCookie: response.headers.get('set-cookie') || undefined }
   } catch (error) {
     console.error('[v0] FastAPI proxy unavailable:', error)
-    return { body: JSON.stringify({ detail: 'The reconciliation backend is unavailable. Start FastAPI on http://localhost:8000 and try again.' }), status: 502, contentType: 'application/json' }
+    return { body: JSON.stringify({ detail: 'The reconciliation backend is unavailable. Start FastAPI on http://localhost:8000 or configure BACKEND_URL, then try again.' }), status: 502, contentType: 'application/json' }
   }
 }
 

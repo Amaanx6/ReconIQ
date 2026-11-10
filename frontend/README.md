@@ -26,7 +26,9 @@ Browser components call only same-origin routes:
 - `GET /api/reasoning-trace/{record_id}` → FastAPI immutable trace
 - `GET /api/health` and `/api/openapi.json` → FastAPI infrastructure endpoints
 
-The server proxy uses `NEXT_PUBLIC_API_BASE_URL`, defaulting to `http://localhost:8000`, forwards request bodies and `Idempotency-Key`, disables upstream fetch caching, and returns an explicit 502 when the developer backend is unreachable. It does not invent response fields or provide production fixtures.
+The server proxy uses the runtime `BACKEND_URL` binding in Vercel, which points to the internal FastAPI service. Outside Vercel it uses `NEXT_PUBLIC_API_BASE_URL`, defaulting to `http://localhost:8000`. It forwards request bodies and `Idempotency-Key`, disables upstream fetch caching, and returns an explicit 502 when the backend is unreachable. It does not invent response fields or provide production fixtures.
+
+The root `vercel.json` routes public `/api/*` requests through the frontend proxy (preserving its Redis caching behavior) and sends all other public paths to the frontend. The backend remains internal; the frontend reaches it through its `BACKEND_URL` service binding.
 
 ## Backend contract and generation
 
