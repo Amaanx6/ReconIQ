@@ -80,7 +80,7 @@ function Nav() {
           <Link href="#system">How it works</Link>
           <Link href="#proof">Proof</Link>
           <Link href="/runs">
-            Open control room <ArrowUpRight size={14} />
+            DashBoard <ArrowUpRight size={14} />
           </Link>
         </nav>
 
@@ -116,7 +116,7 @@ function Nav() {
             </Link>
 
             <Link href="/runs" onClick={() => setOpen(false)}>
-              Open control room <ArrowUpRight size={14} />
+              Dashboard <ArrowUpRight size={14} />
             </Link>
 
             <Link
@@ -597,13 +597,13 @@ function Dataset() {
         </h2>
 
         <p>
-          Clean transactions are easy. Arbiter’s test set is deliberately
+          Clean transactions are easy. ReconIQ's test set is deliberately
           uncomfortable: composite settlements, near misses, decoys, and
           anomalies that punish a guess.
         </p>
 
         <Link className="text-link" href="/runs">
-          Explore the control room <ArrowUpRight size={15} />
+          Explore the Dashboard <ArrowUpRight size={15} />
         </Link>
       </motion.div>
 

@@ -15,5 +15,5 @@ export function BrandMark({ size = 30 }: { size?: number }) {
 }
 
 export function Brand({ href = '/', compact = false }: { href?: string; compact?: boolean }) {
-  return <Link href={href} className="brand"><BrandMark /><span className={compact ? 'sr-only' : undefined}>arbiter</span></Link>
+  return <Link href={href} className="brand"><BrandMark /><span className={compact ? 'sr-only' : undefined}>ReconIQ</span></Link>
 }

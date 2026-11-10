@@ -106,7 +106,7 @@ export default function RunsPage() {
   }).slice(0, 12), [caseFilter, caseSearch, detailRows])
 
   return <main className="runs-page dashboard-page">
-    <header className="runs-nav"><Brand /><span className="dashboard-nav-title">Reconciliation workspace</span><Link href="/" className="back"><ArrowLeft size={15} /> return to story</Link></header>
+    <header className="runs-nav"><Brand /><span className="dashboard-nav-title">Reconciliation workspace</span><Link href="/" className="back"><ArrowLeft size={15} /> Back To Home </Link></header>
     <section className="dashboard-shell">
       <aside className="dashboard-sidebar glass">
         <div className="sidebar-heading"><div><span className="eyebrow">WORKSPACE</span><h2>Runs</h2></div><button className="icon-btn" type="button" aria-label="Refresh runs" onClick={() => void latest.refetch()}><RefreshCw size={15} /></button></div>
@@ -119,7 +119,7 @@ export default function RunsPage() {
       </aside>
 
       <div className="dashboard-main">
-        <div className="dashboard-heading"><div><span className="eyebrow">CONTROL ROOM / OVERVIEW</span><h1>Understand every run<br /><em>at a glance.</em></h1><p>Review throughput, outcomes, and the cases that need attention—without losing the evidence behind each decision.</p></div><div className="dashboard-date"><span>SELECTED RUN</span><b>{selectedId ? (result?.run_id || selectedId) : 'No run selected'}</b></div></div>
+        <div className="dashboard-heading"><div><span className="eyebrow">Dashboard / OVERVIEW</span><h1>Understand every run<br /><em>at a glance.</em></h1><p>Review throughput, outcomes, and the cases that need attention—without losing the evidence behind each decision.</p></div><div className="dashboard-date"><span>SELECTED RUN</span><b>{selectedId ? (result?.run_id || selectedId) : 'No run selected'}</b></div></div>
         {result ? <>
           <section className="dashboard-hero glass"><div><span className="micro-label">SELECTED INVESTIGATION</span><h2>{exceptionCount ? `${exceptionCount} records need attention.` : 'Every record resolved cleanly.'}</h2><p>{resolved} of {result.total_records ?? '—'} records resolved · {formatMetric(result.overall_match_rate)} overall match rate.</p><small>{formatDate(result.timestamp || result.run_started_at)} · {result.provider_mode || 'Provider unavailable'}</small></div>{result.run_id ? <Link className="trace-open" href={`/runs/${encodeURIComponent(result.run_id)}`}>Open full run <ArrowUpRight size={15} /></Link> : <span className="latest-note">Legacy persisted result · detail shown here</span>}</section>
           <section className="dashboard-kpis"><DashboardKpi label="Match rate" value={formatMetric(result.overall_match_rate)} detail="Full pipeline outcome" tone="mint" /><DashboardKpi label="Resolved" value={resolved} detail={`${result.total_records ?? '—'} total records`} tone="mint" /><DashboardKpi label="Automatic" value={breakdown?.fast_path_confirmed ?? 0} detail="Fast-path matches" tone="blue" /><DashboardKpi label="Attention" value={exceptionCount} detail="Exceptions surfaced" tone="amber" /></section>
