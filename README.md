@@ -1,4 +1,4 @@
-# AI Finance Controller
+# ReconIQ
 
 An agentic financial reconciliation system that reconciles messy **bank statements, internal ledgers, and payment-gateway exports**.
 
